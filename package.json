@@ -1,0 +1,59 @@
+{
+  "name": "IpsumAPI",
+  "version": "1.0.0",
+  "description": "IPSUM software API to interact with the database, and other functions ",
+  "author": "Loading-Software",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "devWin": "SET NODE_ENV=dev& nodemon src/index.js",
+    "testingWin": "SET NODE_ENV=testing& nodemon src/index.js",
+    "dev": "NODE_ENV=dev nodemon src/index.js",
+    "testing": "NODE_ENV=testing nodemon src/index.js",
+    "cloud": "NODE_ENV=cloud node src/index.js",
+    "test": "jest",
+    "test-schema": "jest -t='Task resolvers'"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.6",
+    "@graphql-codegen/core": "^1.17.10",
+    "@types/jest": "^26.0.15",
+    "apollo-server-testing": "^2.18.2",
+    "cuid": "^2.1.8",
+    "jest": "^26.6.1",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.1.2"
+  },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
+      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/test-db-setup.js"
+    ],
+    "restoreMocks": true
+  },
+  "dependencies": {
+    "@graphql-tools/load-files": "^6.5.2",
+    "@graphql-tools/schema": "^8.3.1",
+    "@graphql-tools/utils": "^8.5.3",
+    "apollo-server": "^3.5.0",
+    "bcrypt": "^5.0.0",
+    "date-fns": "^2.16.1",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "graphql": "^15.7.2",
+    "graphql-tag": "^2.11.0",
+    "graphql-upload": "^13.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "mongoose": "^5.10.9",
+    "path": "^0.12.7",
+    "stream-promise": "^3.2.0"
+  }
+}

@@ -1,0 +1,5 @@
+directive @authenticated on FIELD_DEFINITION
+directive @authorized(roles: [Role!]! = [SUPER_ADMIN]) on FIELD_DEFINITION
+directive @formatDate(
+  format: String = "yyyy-MM-dd HH:mm:ss"
+) on FIELD_DEFINITION

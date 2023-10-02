@@ -1,0 +1,71 @@
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  BASIC
+}
+
+type User {
+  _id: ID!
+  name: String!
+  surname1: String!
+  surname2: String
+  phone: String
+  role: Role!
+  email: String!
+  password: String!
+  createdAt: String @formatDate
+  updatedAt: String @formatDate
+  resetPasswordEmailSent: String @formatDate
+  lastResetPassword: String @formatDate
+  company: Company!
+  devices: [Device]
+}
+
+type AuthUser {
+  token: String!
+}
+
+input NewUserInput {
+  name: String!
+  surname1: String!
+  surname2: String
+  phone: String
+  role: Role!
+  email: String!
+  password: String!
+  company: String!
+}
+
+input UpdateUserInput {
+  name: String
+  surname1: String
+  surname2: String
+  phone: String
+  role: Role
+  email: String
+  password: String
+  company: String
+  devices: [String]
+}
+
+input SignInput {
+  email: String!
+  password: String!
+}
+
+type Query {
+  user(id: ID!): User! @authenticated
+  users: [User]! @authenticated
+}
+
+type Mutation {
+  createUser(input: NewUserInput!): User! @authorized @authenticated
+
+  updateUser(id: ID!, input: UpdateUserInput!): User! @authorized @authenticated
+
+  removeUser(id: ID!): User! @authorized @authenticated
+
+  signin(input: SignInput!): AuthUser!
+
+  signup(input: SignInput!): AuthUser!
+}

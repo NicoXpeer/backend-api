@@ -1,0 +1,26 @@
+type Tank {
+  _id: ID!
+  name: String!
+  description: String!
+}
+
+input NewTankInput {
+  name: String!
+  description: String!
+}
+
+input UpdateTankInput {
+  name: String
+  description: String
+}
+
+extend type Query {
+  tank(id: ID!): Tank! @authenticated
+  tanks: [Tank] @authorized
+}
+
+extend type Mutation {
+  createTank(input: NewTankInput!): Tank! @authorized @authenticated
+  updateTank(id: ID!, input: UpdateTankInput!): Tank! @authorized @authenticated
+  deleteTank(id: ID!): Tank! @authorized @authenticated
+}

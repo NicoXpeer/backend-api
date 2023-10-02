@@ -1,0 +1,41 @@
+type Company {
+  _id: ID!
+  name: String!
+  phone: String @authorized
+  address: String @authorized
+  country: String!
+  cif: String @authorized
+  createdAt: String @formatDate
+  updatedAt: String @formatDate
+}
+
+input NewCompanyInput {
+  name: String!
+  phone: String
+  address: String
+  country: String!
+  cif: String!
+}
+
+input UpdateCompanyInput {
+  name: String
+  phone: String
+  address: String
+  country: String
+  cif: String
+}
+
+extend type Query {
+  company(id: ID!): Company! @authorized
+  companies: [Company] @authorized
+}
+
+extend type Mutation {
+  createCompany(input: NewCompanyInput!): Company! @authorized @authenticated
+
+  updateCompany(id: ID!, input: UpdateCompanyInput!): Company!
+    @authorized
+    @authenticated
+
+  deleteCompany(id: ID!): Company! @authorized @authenticated
+}
